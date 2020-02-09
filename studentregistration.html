@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	
+	<title>Student Registration Form</title>
+	
+	<link rel="stylesheet" href="stylesheett.css">
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+</head>
+<body>
+	<div>
+		<!--<img src="C:\Users\user\Desktop\Library project wol\Library\image.jpg" style="width:800px;height:600px;">-->
+<form class="bgimg" action="student.php" method="post" name="StudentRegistration" onsubmit="return(validate());">
+ <img src='C:\Users\user\Desktop\Library project wol\Library\image.jpg'>
+	<table>
+	
+		<tr>
+			<td>
+			<b>Student Registration Form</b>
+			</td>
+		</tr>
+
+		<tr>
+			<td>Name</td>
+			<td><input type="text" name="studentname" id="studentname" size="30"></td>
+		</tr>
+
+		<tr>
+			<td>Father Name</td>
+			<td><input type="text" name="fathername" id="fathername"
+			size="30"></td>
+		</tr>
+	
+		<tr>
+			<td>Postal Address</td>
+			<td><input type="text" name="paddress" id="paddress" size="30"></td>
+		</tr>
+
+		<tr>
+			<td>Personal Address</td>
+			<td><input type="text" name="personaladdress"id="personaladdress" size="30">
+			</td>
+		</tr>
+
+		<tr>
+			<td>Sex</td>
+			<td>
+				<input id="m" type="radio" name="sex" value="male" size="10">Male
+				<input id="f" type="radio" name="sex" value="Female" size="10">Female
+			</td>
+		</tr>
+
+		<tr>
+		<td>City</td>
+			<td>
+			<select name="City">
+				<option value="-1" selected>select..</option>
+				<option id="newd" value="New Delhi">NEW DELHI</option>
+				<option id="mum" value="Mumbai">MUMBAI</option>
+				<option id="goa" value="Goa">GOA</option>
+				<option id="patna" value="Patna">PATNA</option>
+			</select></td>
+		</tr>
+
+		<tr>
+			<td>Course</td>
+			<td><select name="Course">
+			<option value="-1" selected>select..</option>
+			<option id='btech' value="B.Tech">B.TECH</option>
+			<option id="mca" value="MCA">MCA</option>
+			<option id="mba" value="MBA">MBA</option>
+			<option id="bca" value="BCA">BCA</option>
+			</select></td>
+		</tr>
+
+		<tr>
+			<td>District</td>
+			<td><select name="District">
+			<option value="-1" selected>select..</option>
+			<option id="nal" value="Nalanda">NALANDA</option>
+			<option id="up" value="UP">UP</option>
+			<option id="pune" value="Pune">Pune</option>
+			<option id="mp" value="MP">MP</option>
+		</select></td>
+
+		</tr>
+
+		<tr>
+		<td>State</td>
+			<td><select Name="State">
+			<option value="-1" selected>select..</option>
+			<option id="newd" value="New Delhi">NEW DELHI</option>
+			<option id="mh" value="MH">MH</option>
+			<option id="kt" value="KT">KT</option>
+			<option id="tn" value="TN">TN</option>
+			</select></td>
+		</tr>
+		
+		<tr>
+			<td>PinCode</td>
+			<td><input type="text" name="pincode" id="pincode" size="30"></td>
+		</tr>
+		<tr>
+			<td>EmailId</td>
+			<td><input type="text" name="emailid" id="emailid" size="30"></td>
+		</tr>
+
+		<tr>
+			<td>DOB</td>
+			<td><input type="text" name="dob" id="dob" size="30"></td>
+		</tr>
+
+		<tr>
+			<td>MobileNo</td>
+			<td><input type="text" name="mobileno" id="mobileno" size="30"></td>
+		</tr>
+		<tr>
+			<td>
+				<input id="reset" type="reset">
+			</td>
+			<td colspan="2">
+				<input id="submit" type="submit" value="Submit Form" />
+			</td>
+		</tr>
+		
+	</table>
+</form>
+
+<button id='btnGiveCommand'>Give Command!</button>
+    <br><br>
+    <span id='message'></span>
+    <br><br>
+<script>
+	var message = document.querySelector('#message');
+
+	var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition;
+	var SpeechGrammarList = SpeechGrammarList || webkitSpeechGrammarList;
+
+	var grammar = '#JSGF V1.0;'
+
+	var recognition = new SpeechRecognition();
+	var speechRecognitionList = new SpeechGrammarList();
+	speechRecognitionList.addFromString(grammar, 1);
+	recognition.grammars = speechRecognitionList;
+	recognition.lang = 'en-US';
+	recognition.interimResults = false;
+
+	recognition.onresult = function(event) {
+		var last = event.results.length - 1;
+		var command = event.results[last][0].transcript;
+		message.textContent = 'Voice Input: ' + command + '.';
+
+		if(command.toLowerCase() === 'select male'){
+                document.querySelector('#m').checked = true;
+			}
+
+			if(command.toLowerCase() === 'select female'){
+                document.querySelector('#f').checked = true;
+            }
+			if(command.toLowerCase() === 'select new delhi'){
+                document.querySelector('#newd').checked= true;
+            }
+			if(command.toLowerCase() === 'select mumbai'){
+                document.querySelector('#mum').checked = true;
+			}
+			if(command.toLowerCase() === 'select goa'){
+                document.querySelector('#goa').checked = true;
+			}
+			if(command.toLowerCase() === 'select patna'){
+                document.querySelector('#patna').checked = true;
+			}
+			if(command.toLowerCase() === 'select btech'){
+                document.querySelector('#btech').checked = true;
+			}
+			if(command.toLowerCase() === 'select mca'){
+                document.querySelector('#mca').checked = true;
+			}
+			if(command.toLowerCase() === 'select mba'){
+                document.querySelector('#mba').checked = true;
+			}
+			if(command.toLowerCase() === 'select bca'){
+                document.querySelector('#bca').checked = true;
+			}
+			if(command.toLowerCase() === 'select nalanda'){
+                document.querySelector('#nal').checked = true;
+			}
+			if(command.toLowerCase() === 'select up'){
+                document.querySelector('#up').checked = true;
+			}
+			if(command.toLowerCase() === 'select pune'){
+                document.querySelector('#pune').checked = true;
+			}
+			if(command.toLowerCase() === 'select mp'){
+                document.querySelector('#mp').checked = true;
+			}
+			if(command.toLowerCase() === 'select new delhi'){
+                document.querySelector('#newd').checked = true;
+			}
+			if(command.toLowerCase() === 'select mh'){
+                document.querySelector('#mh').checked = true;
+			}
+			if(command.toLowerCase() === 'select kt'){
+                document.querySelector('#kt').checked = true;
+			}
+			if(command.toLowerCase() === 'select tn'){
+                document.querySelector('#tn').checked = true;
+			}
+			if(command.toLowerCase() === 'select submit'){
+                document.querySelector('#submit').checked = true;
+			}
+			if(command.toLowerCase() === 'select reset'){
+                document.querySelector('#reset').checked = true;
+			}
+	};
+
+	recognition.onspeechend = function() {
+            recognition.stop();
+        };
+
+        recognition.onerror = function(event) {
+            message.textContent = 'Error occurred in recognition: ' + event.error;
+        }        
+
+        document.querySelector('#btnGiveCommand').addEventListener('click', function(){
+            recognition.start();
+
+        });
+			
+		</script>
+</div>
+<script type="text/javascript" src="validate.js"></script>
+</body>
+</html>
